@@ -429,6 +429,170 @@ body.standalone-page .services-header {
   margin-bottom: 40px;
 }
 
+body.standalone-page .about-section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+body.standalone-page .about-section-head .section-sub {
+  max-width: 560px;
+}
+
+.about-hero {
+  background:
+    radial-gradient(circle at 80% 18%, rgba(var(--brand-rgb), 0.09), transparent 34%),
+    linear-gradient(180deg, #0d1e38 0%, #112244 100%);
+}
+
+.about-hero-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 0.9fr;
+  gap: 28px;
+  align-items: stretch;
+}
+
+.about-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 4.5vw, 4rem);
+  line-height: 1.08;
+  margin-bottom: 22px;
+}
+
+.about-intro {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  max-width: 620px;
+}
+
+.about-points {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.about-point,
+.about-panel,
+.about-card,
+.contact-card,
+.location-card {
+  background: var(--dark2);
+  border: 1px solid rgba(var(--brand-rgb), 0.12);
+  border-radius: 8px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.about-point {
+  padding: 20px 18px;
+}
+
+.about-point-label,
+.about-panel-tag,
+.contact-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.about-point-value {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.about-panel {
+  padding: 34px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.about-panel p,
+.about-card p,
+.contact-card p,
+.location-card p,
+.location-card li {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.about-story,
+.about-contact,
+.about-location {
+  background: linear-gradient(180deg, #112244 0%, #0d1e38 100%);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.about-card {
+  padding: 32px;
+}
+
+.about-card h3,
+.location-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  margin-bottom: 12px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.contact-card {
+  padding: 28px 26px;
+}
+
+.contact-card a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 1.02rem;
+  font-weight: 600;
+}
+
+.contact-card a:hover {
+  color: var(--gold);
+}
+
+.location-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 24px;
+}
+
+.location-card {
+  padding: 32px;
+}
+
+.location-card ul {
+  list-style: none;
+  margin-top: 16px;
+}
+
+.location-card li {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(var(--brand-rgb), 0.08);
+}
+
+.location-note {
+  margin-top: 18px;
+}
+
 .section-label {
   font-size: 0.72rem; font-weight: 600;
   letter-spacing: 0.2em; text-transform: uppercase;
@@ -704,6 +868,11 @@ body.standalone-page .industry-pill:nth-child(10) { animation-delay: 0.62s; }
   .footer-top { grid-template-columns: 1fr 1fr; }
   .industries-layout { grid-template-columns: 1fr; }
   .services-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+  body.standalone-page .about-section-head { flex-direction: column; align-items: flex-start; }
+  .about-hero-grid,
+  .about-grid,
+  .contact-grid,
+  .location-layout { grid-template-columns: 1fr; }
   .cta-strip { flex-direction: column; }
 }
 
@@ -726,6 +895,7 @@ body.standalone-page .industry-pill:nth-child(10) { animation-delay: 0.62s; }
   .services-grid { grid-template-columns: 1fr; gap: 1px; }
   .testi-grid { grid-template-columns: 1fr; }
   .how-steps { grid-template-columns: 1fr; gap: 1px; }
+  .about-points { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr; gap: 40px; }
   .footer-col h4 { margin-bottom: 12px; }
   .cta-strip { padding: 50px 20px; gap: 20px; }
@@ -766,6 +936,10 @@ body.standalone-page .industry-pill:nth-child(10) { animation-delay: 0.62s; }
   .service-card p { font-size: 0.85rem; }
   .testi-grid { grid-template-columns: 1fr; }
   .testi-card { padding: 24px 20px; }
+  .about-card,
+  .contact-card,
+  .location-card,
+  .about-panel { padding: 24px 20px; }
   .testi-quote { font-size: 2.5rem; margin-bottom: 12px; }
   .testi-text { font-size: 0.9rem; margin-bottom: 20px; }
   .how-steps { grid-template-columns: 1fr; }
