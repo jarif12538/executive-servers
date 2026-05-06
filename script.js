@@ -108,5 +108,87 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!mobileMenu) console.warn('Mobile menu element with id="mobileMenu" not found');
   }
 
-  console.log('EliteStaff site loaded successfully');
+  // Parallax - lightweight transform-based layers for hero
+  (function() {
+    const heroEl = document.querySelector('.hero');
+    const parallaxLayers = [
+      { el: document.querySelector('.hero-bg'), speed: 0.18 },
+      { el: document.querySelector('.hero-pattern'), speed: 0.35 },
+      { el: document.querySelector('.hero-glow'), speed: 0.55 },
+      { el: document.querySelector('.hero-brand-logo'), speed: 0.9 }
+    ].filter(l => l.el);
+
+    if (!heroEl || parallaxLayers.length === 0) return;
+
+    let ticking = false;
+
+    function updateParallax() {
+      ticking = false;
+      const heroTop = heroEl.offsetTop;
+      const scrolled = window.pageYOffset - heroTop;
+      parallaxLayers.forEach(layer => {
+        const y = Math.round(scrolled * layer.speed);
+        layer.el.style.transform = `translate3d(0, ${y}px, 0)`;
+      });
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', updateParallax);
+    updateParallax();
+  })();
+
+  // Scroll-triggered animations
+  (function() {
+    // Apply scroll-reveal class to all sections and cards
+    const elementsToReveal = document.querySelectorAll(
+      'section:not(.hero), .service-card, .detail-card, .about-card, .contact-card, .service-detail-section'
+    );
+    elementsToReveal.forEach(el => {
+      if (!el.classList.contains('service-card')) {
+        el.classList.add('scroll-reveal');
+      }
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -60px 0px'
+    });
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+  })();
+
+  // Service cards stagger animation on visibility
+  (function() {
+    const servicesGrid = document.querySelector('.services-grid');
+    if (!servicesGrid) return;
+
+    const cards = servicesGrid.querySelectorAll('.service-card');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    cards.forEach(card => observer.observe(card));
+  })();
+
+  console.log('EliteStaff site loaded successfully with professional animations');
 });
+
