@@ -4,8 +4,213 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Executive Server</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
 <link rel="stylesheet" href="styles.css?v=20260328-2"/>
+<style>
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+h1,
+h2,
+h3,
+.logo {
+  font-family: 'Playfair Display', serif;
+}
+
+p,
+li,
+.nav-links a,
+.mobile-nav-links a,
+.btn-outline,
+.btn-solid,
+.btn-dark,
+.btn-white-outline,
+.footer-col a,
+.hero-eyebrow,
+.stat-label {
+  font-family: 'Inter', sans-serif;
+}
+
+nav {
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+}
+
+.nav-links a {
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s ease;
+  opacity: 0.75;
+}
+
+.nav-links a:hover::after,
+.nav-links a:focus-visible::after,
+.nav-links a.active::after {
+  transform: scaleX(1);
+}
+
+.btn-outline,
+.btn-solid,
+.btn-dark,
+.btn-white-outline {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+}
+
+.btn-outline:hover,
+.btn-solid:hover,
+.btn-dark:hover,
+.btn-white-outline:hover {
+  transform: translateY(-2px) scale(1.03);
+}
+
+.hero,
+.cta-strip,
+footer {
+  position: relative;
+}
+
+.cta-strip,
+footer {
+  border-top: 1px solid rgba(var(--brand-rgb), 0.12);
+}
+
+.cta-strip {
+  padding: 80px 60px;
+}
+
+h2 {
+  position: relative;
+}
+
+h2::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 2px;
+  margin-top: 14px;
+  background: var(--accent);
+}
+
+.cta-strip h2 {
+  display: inline-block;
+  padding-bottom: 2px;
+}
+
+.hero-stats {
+  gap: 28px;
+}
+
+.stat {
+  position: relative;
+  padding-top: 4px;
+}
+
+.stat::before {
+  content: "";
+  display: block;
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 14px;
+  background-color: var(--gold);
+  -webkit-mask: var(--stat-icon) center / contain no-repeat;
+  mask: var(--stat-icon) center / contain no-repeat;
+  opacity: 0.96;
+}
+
+.hero-stats .stat:nth-child(1) {
+  --stat-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M16 11c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3Zm-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3Zm0 2c-2.67 0-8 1.34-8 4v3h14v-3c0-2.66-5.33-4-8-4Zm8 0c-.34 0-.72.02-1.11.06 1.18.84 1.84 1.92 1.84 3.19V21h8v-3c0-2.66-5.33-4-8-4Z'/%3E%3C/svg%3E");
+}
+
+.hero-stats .stat:nth-child(3) {
+  --stat-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M4 21h16v-2H4v2Zm2-4h12V5H6v12Zm2-10h8v2H8V7Zm0 4h8v2H8v-2Zm0 4h5v2H8v-2Z'/%3E%3C/svg%3E");
+}
+
+.hero-stats .stat:nth-child(5) {
+  --stat-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='m12 17.27 5.18 3.13-1.4-5.89L20 10.24l-6.03-.51L12 4 10.03 9.73 4 10.24l4.22 4.27-1.4 5.89L12 17.27Z'/%3E%3C/svg%3E");
+}
+
+.footer-top {
+  gap: 48px;
+}
+
+.footer-top > * {
+  position: relative;
+}
+
+.footer-top > *::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 44px;
+  height: 1px;
+  background: rgba(var(--brand-rgb), 0.18);
+}
+
+.footer-col a {
+  position: relative;
+  display: inline-flex;
+  padding-bottom: 2px;
+}
+
+.footer-col a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+  opacity: 0.7;
+}
+
+.footer-col a:hover::after,
+.footer-col a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.footer-bottom {
+  padding-top: 24px;
+}
+
+[data-aos="fade-up"] {
+  will-change: transform, opacity;
+}
+
+@media (max-width: 768px) {
+  .cta-strip,
+  footer {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .cta-strip {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+}
+</style>
 </head>
 <body>
 
@@ -79,32 +284,32 @@
   <div class="hero-bg"></div>
   <div class="hero-pattern"></div>
   <div class="hero-glow"></div>
-  <div class="hero-brand-logo" aria-label="Executive Servers logo">
+  <div class="hero-brand-logo" aria-label="Executive Servers logo" data-aos="fade-up">
     <img src="assets/executive.png" alt="Executive Servers logo" class="hero-brand-logo-img" />
   </div>
 
-  <div class="hero-content">
-    <div class="hero-eyebrow">A Trusted staffing Partner</div>
-    <h1>Powering the World's <em>Finest</em> Hospitality Brands</h1>
-    <p>For over 2 years, Executive Server has connected the most respected hotels, resorts, and venues with exceptional talent. Whether you're seeking work or building a team — we deliver.</p>
-    <div class="hero-btns">
+  <div class="hero-content" data-aos="fade-up" data-aos-delay="120">
+    <div class="hero-eyebrow" data-aos="fade-up" data-aos-delay="160">A Trusted staffing Partner</div>
+    <h1 data-aos="fade-up" data-aos-delay="220">Powering the World's <em>Finest</em> Hospitality Brands</h1>
+    <p data-aos="fade-up" data-aos-delay="280">For over 2 years, Executive Server has connected the most respected hotels, resorts, and venues with exceptional talent. Whether you're seeking work or building a team — we deliver.</p>
+    <div class="hero-btns" data-aos="fade-up" data-aos-delay="340">
       <a href="services.html" class="btn-outline">Find Work</a>
       <a href="#" class="btn-outline">Business Solutions Comming soon..</a>
     </div>
   </div>
 
   <div class="hero-stats">
-    <div class="stat">
+    <div class="stat" data-aos="fade-up" data-aos-delay="120">
       <span class="stat-num">200+</span>
       <span class="stat-label">Employees Placed</span>
     </div>
     <div class="stat-divider"></div>
-    <div class="stat">
+    <div class="stat" data-aos="fade-up" data-aos-delay="220">
       <span class="stat-num">20+</span>
       <span class="stat-label">Partner Properties</span>
     </div>
     <div class="stat-divider"></div>
-    <div class="stat">
+    <div class="stat" data-aos="fade-up" data-aos-delay="320">
       <span class="stat-num">100%</span>
       <span class="stat-label">Client Satisfaction</span>
     </div>
@@ -113,8 +318,8 @@
 
 <!-- CTA STRIP --> 
 <div class="cta-strip">
-  <h2>Ready to Build Your Ideal Hospitality Team?</h2>
-  <div class="cta-strip-btns">
+  <h2 data-aos="fade-up">Ready to Build Your Ideal Hospitality Team?</h2>
+  <div class="cta-strip-btns" data-aos="fade-up" data-aos-delay="120">
     <a href="about.html#contact" class="btn-dark">Hire Staff Now</a>
     <a href="services.html" class="btn-white-outline">Find a Job</a>
   </div>
@@ -122,12 +327,12 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-top">
-    <div class="footer-brand">
+  <div class="footer-top" data-aos="fade-up">
+    <div class="footer-brand" data-aos="fade-up" data-aos-delay="80">
       <span class="logo">Executive-<span>Server</span></span>
       <p>The leading hospitality staffing agency connecting exceptional talent with the world's finest properties since 2023.</p>
     </div>
-    <div class="footer-col">
+    <div class="footer-col" data-aos="fade-up" data-aos-delay="140">
       <h4>Services</h4>
       <ul>
         <li><a href="service-banquet-captain.html">Banquet Captain</a></li>
@@ -140,7 +345,7 @@
         <li><a href="service-resto-food-runner.html">Resto Food Runner</a></li>
       </ul>
     </div>
-    <div class="footer-col">
+    <div class="footer-col" data-aos="fade-up" data-aos-delay="200">
       <h4>Industries</h4>
       <ul>
         <li><a href="#">Hotels & Resorts</a></li>
@@ -151,7 +356,7 @@
         <li><a href="#">Senior Living</a></li>
       </ul>
     </div>
-    <div class="footer-col">
+    <div class="footer-col" data-aos="fade-up" data-aos-delay="260">
       <h4>Company</h4>
       <ul>
         <li><a href="about.html">About Us</a></li>
@@ -169,6 +374,74 @@
   </div>
 </footer>
 
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script src="script.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.AOS) {
+    AOS.init({
+      once: true,
+      duration: 900,
+      offset: 80,
+      easing: 'ease-out-cubic'
+    });
+  }
+
+  const statSection = document.querySelector('.hero-stats');
+  const statNumbers = document.querySelectorAll('.hero-stats .stat-num');
+
+  if (!statSection || !statNumbers.length) {
+    return;
+  }
+
+  const statTargets = Array.from(statNumbers).map((element) => {
+    const rawValue = element.textContent.trim();
+    const numericMatch = rawValue.match(/[0-9]+(?:\.[0-9]+)?/);
+    return {
+      element,
+      target: numericMatch ? parseFloat(numericMatch[0]) : 0,
+      suffix: rawValue.replace(/[0-9.]/g, '')
+    };
+  });
+
+  let hasAnimated = false;
+
+  function animateStat(element, target, suffix) {
+    const duration = 1700;
+    const startTime = performance.now();
+
+    function update(currentTime) {
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      const value = target * easedProgress;
+      element.textContent = `${Math.round(value)}${suffix}`;
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      } else {
+        element.textContent = `${target}${suffix}`;
+      }
+    }
+
+    requestAnimationFrame(update);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !hasAnimated) {
+        hasAnimated = true;
+        statTargets.forEach(({ element, target, suffix }) => {
+          animateStat(element, target, suffix);
+        });
+        observer.disconnect();
+      }
+    });
+  }, {
+    threshold: 0.45
+  });
+
+  observer.observe(statSection);
+});
+</script>
 </body>
 </html>

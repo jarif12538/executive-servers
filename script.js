@@ -3,6 +3,15 @@
 // Smooth scroll for navigation links
 document.addEventListener('DOMContentLoaded', function() {
 
+  if (window.AOS) {
+    AOS.init({
+      once: true,
+      duration: 900,
+      offset: 80,
+      easing: 'ease-out-cubic'
+    });
+  }
+
   if (document.body.classList.contains('standalone-page') && !window.location.hash) {
     window.scrollTo(0, 0);
   }
@@ -55,6 +64,45 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   window.addEventListener('scroll', highlightNavigation);
+
+  // Count up numeric stats when they enter the viewport
+  const countTargets = document.querySelectorAll('[data-count-to]');
+
+  if (countTargets.length) {
+    const animateCount = (element) => {
+      const target = Number(element.getAttribute('data-count-to')) || 0;
+      const suffix = element.getAttribute('data-count-suffix') || '';
+      const duration = Number(element.getAttribute('data-count-duration')) || 1700;
+      const startTime = performance.now();
+
+      function tick(currentTime) {
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        const easedProgress = 1 - Math.pow(1 - progress, 3);
+        element.textContent = `${Math.round(target * easedProgress)}${suffix}`;
+
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          element.textContent = `${target}${suffix}`;
+        }
+      }
+
+      requestAnimationFrame(tick);
+    };
+
+    const countObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCount(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.45
+    });
+
+    countTargets.forEach(target => countObserver.observe(target));
+  }
 
   // Mobile menu toggle with error handling
   const hamburger = document.getElementById('hamburger');
