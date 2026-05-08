@@ -807,10 +807,10 @@ body.standalone-page.about-page .about-points {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
+  width: 44px;
+  height: 44px;
   margin-top: 4px;
-  border-radius: 16px;
+  border-radius: 14px;
   border: 1px solid rgba(var(--brand-rgb), 0.18);
   background: rgba(255, 255, 255, 0.04);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
@@ -825,8 +825,9 @@ body.standalone-page.about-page .about-points {
 }
 
 .social-icon-link svg {
-  width: 26px;
-  height: 26px;
+  display: block;
+  width: 22px;
+  height: 22px;
   fill: currentColor;
 }
 
