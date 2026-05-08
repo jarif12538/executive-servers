@@ -240,7 +240,19 @@ h2::after {
 }
 </style>
 </head>
-<body>
+<body class="loading">
+
+<div class="page-loader" aria-hidden="true">
+  <div class="loader" role="status" aria-label="Loading Executive Server">
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__ball"></div>
+  </div>
+  <p class="page-loader__text">Loading Executive Server</p>
+</div>
 
 <!-- NAV -->
 <nav>

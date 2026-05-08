@@ -2,6 +2,43 @@
 
 // Smooth scroll for navigation links
 document.addEventListener('DOMContentLoaded', function() {
+  const loaderDuration = 250;
+  const existingLoader = document.querySelector('.page-loader');
+  const pageLoader = existingLoader || (() => {
+    const loaderMarkup = document.createElement('div');
+    loaderMarkup.className = 'page-loader';
+    loaderMarkup.setAttribute('aria-hidden', 'true');
+    loaderMarkup.innerHTML = `
+      <div class="loader" role="status" aria-label="Loading Executive Server">
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__ball"></div>
+      </div>
+      <p class="page-loader__text">Loading Executive Server</p>
+    `;
+    document.body.prepend(loaderMarkup);
+    return loaderMarkup;
+  })();
+
+  document.body.classList.add('loading');
+
+  const hideLoader = () => {
+    if (pageLoader.classList.contains('is-hidden')) {
+      return;
+    }
+
+    document.body.classList.remove('loading');
+
+    pageLoader.classList.add('is-hidden');
+    window.setTimeout(() => {
+      pageLoader.remove();
+    }, 500);
+  };
+
+  window.setTimeout(hideLoader, loaderDuration);
 
   if (window.AOS) {
     AOS.init({
