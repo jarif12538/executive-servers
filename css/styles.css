@@ -668,7 +668,7 @@ nav {
   position: absolute; inset: 0;
   background:
     /* photographic layer */
-    url("assets/home.png") no-repeat right center / cover,
+    url("../assets/home.png") no-repeat right center / cover,
     /* soft radial brand highlight */
     radial-gradient(circle at 72% 28%, rgba(var(--brand-rgb), 0.09), transparent 46%),
     /* base gradient for contrast */
