@@ -1725,11 +1725,21 @@ body.standalone-page .service-skin .cta-section {
 .industries-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
 .industries-visual {
   display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  align-items: start;
+}
+.industry-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .industry-pill {
+  width: 100%;
   background: var(--dark2); border: 1px solid rgba(var(--brand-rgb),0.12);
   border-radius: 4px; padding: 24px 20px;
   display: flex; align-items: center; gap: 14px;
+  text-align: left; appearance: none; -webkit-appearance: none; border-style: solid;
+  cursor: pointer;
+  color: var(--light);
   transition: border-color 0.2s, background 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 .industry-pill:hover {
@@ -1738,8 +1748,56 @@ body.standalone-page .service-skin .cta-section {
   transform: translateY(-3px);
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.32);
 }
+.industry-pill:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+.industry-item.is-open .industry-pill {
+  border-color: var(--gold);
+  background: #202020;
+}
 .industry-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
-.industry-name { font-size: 0.9rem; font-weight: 500; }
+.industry-name { font-size: 0.9rem; font-weight: 500; color: inherit; }
+.industry-note {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: max-height 0.3s ease, opacity 0.22s ease, transform 0.22s ease, padding 0.22s ease;
+  color: rgba(232, 240, 255, 0.84);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  padding: 0 6px 0 18px;
+  margin-left: 10px;
+  border-left: 2px solid rgba(var(--brand-rgb), 0.32);
+  position: relative;
+}
+.industry-note::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 4px rgba(var(--brand-rgb), 0.08);
+}
+.industry-item.is-open .industry-note {
+  max-height: 160px;
+  opacity: 1;
+  transform: translateY(0);
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+body.standalone-page .industries {
+  padding-bottom: 18px;
+}
+
+body.standalone-page .industries + footer {
+  padding-top: 22px;
+}
 
 /* ── TESTIMONIALS ── */
 .testimonials {
@@ -2092,8 +2150,6 @@ body.standalone-page .industry-pill:nth-child(10) { animation-delay: 0.62s; }
   .btn-dark,
   .btn-white-outline,
   .footer-col a,
-    cursor: pointer; background: var(--gold); 
-    display: inline-flex; align-items: center; justify-content: center; line-height: 1;
   .stat-label,
   .about-point-label,
   .about-point-value,

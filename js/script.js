@@ -145,6 +145,36 @@ document.addEventListener('DOMContentLoaded', function() {
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
 
+  // Industry pills reveal a short description beneath the selected item
+  const industryPills = document.querySelectorAll('.industry-pill');
+  const industryItems = document.querySelectorAll('.industry-item');
+
+  if (industryPills.length && industryItems.length) {
+    industryPills.forEach(pill => {
+      pill.addEventListener('click', function() {
+        const item = this.closest('.industry-item');
+        if (!item) return;
+
+        const isOpen = item.classList.contains('is-open');
+
+        industryItems.forEach(otherItem => {
+          otherItem.classList.remove('is-open');
+          const otherPill = otherItem.querySelector('.industry-pill');
+          const otherNote = otherItem.querySelector('.industry-note');
+          if (otherPill) otherPill.setAttribute('aria-expanded', 'false');
+          if (otherNote) otherNote.setAttribute('aria-hidden', 'true');
+        });
+
+        if (!isOpen) {
+          item.classList.add('is-open');
+          this.setAttribute('aria-expanded', 'true');
+          const note = item.querySelector('.industry-note');
+          if (note) note.setAttribute('aria-hidden', 'false');
+        }
+      });
+    });
+  }
+
   // Make service cards open their detail pages reliably when the media area is clicked
   const serviceMediaCards = document.querySelectorAll('.service-card-media[data-href]');
   serviceMediaCards.forEach(card => {
