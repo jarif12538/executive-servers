@@ -2486,3 +2486,18 @@ body.standalone-page .industry-pill:nth-child(10) { animation-delay: 0.62s; }
   0%, 100% { transform: translateX(-50%) translateY(0); }
   50% { transform: translateX(-50%) translateY(-6px); }
 }
+
+/* FOOTER: reduce horizontal gap and tighten mobile spacing */
+footer {
+  padding-left: 60px;
+  padding-right: 20px;
+}
+
+@media (max-width: 600px) {
+  footer {
+    padding: 40px 30px 20px;
+  }
+  .footer-top { gap: 18px; }
+  .footer-bottom { padding-top: 12px; }
+  body.standalone-page .industries + footer { padding-top: 8px; }
+}
